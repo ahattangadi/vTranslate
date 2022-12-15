@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+
+class TranslateInput extends StatefulWidget {
+  const TranslateInput({super.key});
+
+  @override
+  State<TranslateInput> createState() => _TranslateInputState();
+}
+
+class _TranslateInputState extends State<TranslateInput> {
+  final TextEditingController _iptTextEditingController =
+      TextEditingController();
+  final TextEditingController _optTextEditingController =
+      TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Column(
+        children: [
+          Card(
+            margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.16,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                child: TextField(
+                  maxLines: null,
+                  controller: _iptTextEditingController,
+                  keyboardType: TextInputType.multiline,
+                  expands: true,
+                  decoration: InputDecoration(hintText: "Enter text"),
+                ),
+              ),
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.16,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                child: TextField(
+                  maxLines: null,
+                  controller: _optTextEditingController,
+                  keyboardType: TextInputType.multiline,
+                  expands: true,
+                  enabled: false,
+                  decoration: InputDecoration(
+                    hintText: "Translation",
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
