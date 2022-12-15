@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vtranslate/components/lang-list-element.dart';
 import 'package:vtranslate/models/lang.dart';
+import 'package:vtranslate/helper/currentLang.dart';
 
 class LangPage extends StatefulWidget {
   const LangPage({Key? key, required this.title}) : super(key: key);
@@ -73,12 +75,38 @@ class _LangPageState extends State<LangPage> {
     Lang('Chinese', 'zh', false),
   ];
 
+  _isSource() {
+    if (this.widget.title == "Source Language") {
+      return true;
+    } else if (this.widget.title == "Translation Language") {
+      return false;
+    } else {
+      throw Error();
+    }
+  }
+
   _sendBackLanguage(Lang language) {
-    Navigator.pop(context, language);
+    CurrentLanguages.setLanguage(_isSource(), language);
+    print(CurrentLanguages.outputLang);
+    print(CurrentLanguages.sourceLang);
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(this.widget.title),
+        centerTitle: true,
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(8.0),
+        itemCount: _langList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return LangListElement(
+              language: _langList[index], onSelect: _sendBackLanguage);
+        },
+      ),
+    );
   }
 }

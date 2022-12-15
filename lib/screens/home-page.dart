@@ -33,14 +33,20 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                ChooseLangWidget(language: sourceLang.name),
+                ChooseLangWidget(
+                  language: sourceLang.name,
+                  title: "Source Language",
+                ),
                 IconButton(
                     onPressed: () {},
                     icon: Icon(
                       Icons.compare_arrows,
                       color: Colors.blue[600],
                     )),
-                ChooseLangWidget(language: outputLang.name)
+                ChooseLangWidget(
+                  language: outputLang.name,
+                  title: "Translation Language",
+                )
               ],
             ),
           ),
