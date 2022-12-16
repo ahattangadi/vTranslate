@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:vtranslate/components/chooselang.dart';
 import 'package:vtranslate/components/translateinput.dart';
 import 'package:vtranslate/models/lang.dart';
+import 'package:vtranslate/screens/language-pages.dart';
+import 'package:vtranslate/helper/currentLang.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,7 +36,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 ChooseLangWidget(
-                  language: sourceLang.name,
+                  language: CurrentLanguages.sourceLang.name,
                   title: "Source Language",
                 ),
                 IconButton(
@@ -50,7 +52,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          TranslateInput()
+          TranslateInput(),
         ],
       ),
     );

@@ -75,21 +75,21 @@ class _LangPageState extends State<LangPage> {
     Lang('Chinese', 'zh', false),
   ];
 
-  _isSource() {
+  _sendBackLanguage(Lang returnedLanguage) {
     if (this.widget.title == "Source Language") {
-      return true;
+      setState(() {
+        CurrentLanguages.sourceLang = returnedLanguage;
+      });
     } else if (this.widget.title == "Translation Language") {
-      return false;
+      setState(() {
+        CurrentLanguages.outputLang = returnedLanguage;
+      });
     } else {
       throw Error();
     }
-  }
-
-  _sendBackLanguage(Lang language) {
-    CurrentLanguages.setLanguage(_isSource(), language);
-    print(CurrentLanguages.outputLang);
-    print(CurrentLanguages.sourceLang);
     Navigator.pop(context);
+    print(CurrentLanguages.sourceLang.name);
+    print(CurrentLanguages.outputLang.name);
   }
 
   @override
