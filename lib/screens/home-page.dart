@@ -15,8 +15,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final sourceLang = Lang('English', 'en', true);
-  final outputLang = Lang('Hindi', 'hi', true);
+  var sourceLang = CurrentLanguages().sourceLang.value;
+  var outputLang = CurrentLanguages().outputLang.value;
+
+  @override
+  void initState() {
+    CurrentLanguages()
+        .sourceLang
+        .addListener(() => sourceLang = CurrentLanguages().sourceLang.value);
+
+    CurrentLanguages()
+        .outputLang
+        .addListener(() => outputLang = CurrentLanguages().outputLang.value);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 ChooseLangWidget(
-                  language: CurrentLanguages.sourceLang.name,
+                  language: sourceLang.name,
                   title: "Source Language",
                 ),
                 IconButton(

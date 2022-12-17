@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/home-page.dart';
+import 'package:vtranslate/models/lang.dart';
 
 void main() {
   runApp(const MyApp());
