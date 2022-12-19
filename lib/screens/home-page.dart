@@ -45,9 +45,14 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                ChooseLangWidget(
-                  language: sourceLang.name,
-                  title: "Source Language",
+                ValueListenableBuilder<Lang>(
+                  valueListenable: CurrentLanguages.sourceLang,
+                  builder: (context, value, child) {
+                    return ChooseLangWidget(
+                      language: sourceLang.name,
+                      title: "Source Language",
+                    );
+                  },
                 ),
                 IconButton(
                     onPressed: () {},
@@ -55,10 +60,15 @@ class _HomePageState extends State<HomePage> {
                       Icons.compare_arrows,
                       color: Colors.blue[600],
                     )),
-                ChooseLangWidget(
-                  language: outputLang.name,
-                  title: "Translation Language",
-                )
+                ValueListenableBuilder<Lang>(
+                  valueListenable: CurrentLanguages.outputLang,
+                  builder: (context, value, child) {
+                    return ChooseLangWidget(
+                      language: outputLang.name,
+                      title: "Translation Language",
+                    );
+                  },
+                ),
               ],
             ),
           ),
