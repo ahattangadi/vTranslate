@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vtranslate/components/lang-list-element.dart';
 import 'package:vtranslate/models/lang.dart';
 import 'package:vtranslate/helper/currentLang.dart';
-import 'package:vtranslate/screens/home-page.dart';
 
 class LangPage extends StatefulWidget {
   const LangPage({Key? key, required this.title}) : super(key: key);
@@ -98,10 +97,8 @@ class _LangPageState extends State<LangPage> {
     }
 
     Navigator.pop(context);
-    print(CurrentLanguages().sourceLang.value.name);
-    print(CurrentLanguages().outputLang.value.name);
-    // print(CurrentLanguages.sourceLang.name);
-    // print(CurrentLanguages.outputLang.name);
+    print(CurrentLanguages.sourceLang.value.name);
+    print(CurrentLanguages.outputLang.value.name);
   }
 
   @override

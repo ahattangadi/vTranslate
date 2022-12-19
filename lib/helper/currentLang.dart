@@ -2,9 +2,9 @@ import 'package:vtranslate/models/lang.dart';
 import 'package:flutter/material.dart';
 
 class CurrentLanguages extends ChangeNotifier {
-  ValueNotifier<Lang> sourceLang =
+  static ValueNotifier<Lang> sourceLang =
       ValueNotifier<Lang>(Lang('English', 'en', false));
-  ValueNotifier<Lang> outputLang =
+  static ValueNotifier<Lang> outputLang =
       ValueNotifier<Lang>(Lang('French', 'fr', false));
 
   changeSource(Lang language) {

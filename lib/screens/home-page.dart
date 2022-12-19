@@ -15,18 +15,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var sourceLang = CurrentLanguages().sourceLang.value;
-  var outputLang = CurrentLanguages().outputLang.value;
+  var sourceLang = CurrentLanguages.sourceLang.value;
+  var outputLang = CurrentLanguages.outputLang.value;
 
   @override
   void initState() {
-    CurrentLanguages()
-        .sourceLang
-        .addListener(() => sourceLang = CurrentLanguages().sourceLang.value);
+    CurrentLanguages.sourceLang
+        .addListener(() => sourceLang = CurrentLanguages.sourceLang.value);
 
-    CurrentLanguages()
-        .outputLang
-        .addListener(() => outputLang = CurrentLanguages().outputLang.value);
+    CurrentLanguages.outputLang
+        .addListener(() => outputLang = CurrentLanguages.outputLang.value);
     super.initState();
   }
 
