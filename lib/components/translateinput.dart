@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:translator/translator.dart';
+import 'package:vtranslate/helper/currentLang.dart';
 
 class TranslateInput extends StatefulWidget {
   const TranslateInput({super.key});
@@ -12,6 +14,27 @@ class _TranslateInputState extends State<TranslateInput> {
       TextEditingController();
   final TextEditingController _optTextEditingController =
       TextEditingController();
+
+  String translatedText = "";
+  GoogleTranslator translator = new GoogleTranslator();
+
+  _onTextChanged(String text) {
+    if (text != "") {
+      translator
+          .translate(text,
+              from: CurrentLanguages.sourceLang.value.code,
+              to: CurrentLanguages.outputLang.value.code)
+          .then((translatedText) {
+        setState(() {
+          _optTextEditingController.text = translatedText.text;
+        });
+      });
+    } else {
+      setState(() {
+        _optTextEditingController.text = "";
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +53,7 @@ class _TranslateInputState extends State<TranslateInput> {
                   keyboardType: TextInputType.multiline,
                   expands: true,
                   decoration: InputDecoration(hintText: "Enter text"),
+                  onChanged: _onTextChanged,
                 ),
               ),
             ),
