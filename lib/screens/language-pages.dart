@@ -76,20 +76,29 @@ class _LangPageState extends State<LangPage> {
   ];
 
   _sendBackLanguage(Lang returnedLanguage) {
+    // if (this.widget.title == "Source Language") {
+    //   setState(() {
+    //     CurrentLanguages.sourceLang = returnedLanguage;
+    //   });
+    // } else if (this.widget.title == "Translation Language") {
+    //   setState(() {
+    //     CurrentLanguages.outputLang = returnedLanguage;
+    //   });
+    // } else {
+    //   throw Error();
+    // }
+
     if (this.widget.title == "Source Language") {
-      setState(() {
-        CurrentLanguages.sourceLang = returnedLanguage;
-      });
+      CurrentLanguages().changeSource(returnedLanguage);
     } else if (this.widget.title == "Translation Language") {
-      setState(() {
-        CurrentLanguages.outputLang = returnedLanguage;
-      });
+      CurrentLanguages().changeOutput(returnedLanguage);
     } else {
       throw Error();
     }
+
     Navigator.pop(context);
-    print(CurrentLanguages.sourceLang.name);
-    print(CurrentLanguages.outputLang.name);
+    print(CurrentLanguages.sourceLang.value.name);
+    print(CurrentLanguages.outputLang.value.name);
   }
 
   @override
