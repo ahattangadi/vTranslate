@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:vtranslate/components/action-button.dart';
 import 'package:vtranslate/components/chooselang.dart';
 import 'package:vtranslate/components/translateinput.dart';
 import 'package:vtranslate/models/lang.dart';
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: const Text("vTranslate"),
@@ -73,6 +75,31 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           TranslateInput(),
+          SizedBox(height: 18.0),
+          Container(
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ActionButton(
+                  icon: Icons.draw,
+                  text: "Handwriting",
+                  onPress: () {},
+                ),
+                ActionButton(
+                  icon: Icons.camera_alt_rounded,
+                  text: "Camera",
+                  onPress: () {},
+                ),
+                ActionButton(
+                  icon: Icons.mic,
+                  text: "Voice",
+                  onPress: () {},
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
