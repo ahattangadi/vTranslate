@@ -7,7 +7,7 @@ class ActionButton extends StatefulWidget {
 
   final IconData icon;
   final String text;
-  final Function onPress;
+  final VoidCallback onPress;
 
   @override
   State<ActionButton> createState() => _ActionButtonState();
@@ -22,7 +22,7 @@ class _ActionButtonState extends State<ActionButton> {
         style: ButtonStyle(
             padding: MaterialStateProperty.all(
                 EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0))),
-        onPressed: () {},
+        onPressed: this.widget.onPress,
         child: Column(
           children: <Widget>[
             Icon(

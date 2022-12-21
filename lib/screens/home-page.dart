@@ -5,8 +5,10 @@ import 'package:vtranslate/components/action-button.dart';
 import 'package:vtranslate/components/chooselang.dart';
 import 'package:vtranslate/components/translateinput.dart';
 import 'package:vtranslate/models/lang.dart';
+import 'package:vtranslate/screens/camera-translation.dart';
 import 'package:vtranslate/screens/language-pages.dart';
 import 'package:vtranslate/helper/currentLang.dart';
+import 'package:camera/camera.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -90,7 +92,14 @@ class _HomePageState extends State<HomePage> {
                 ActionButton(
                   icon: Icons.camera_alt_rounded,
                   text: "Camera",
-                  onPress: () {},
+                  onPress: () async {
+                    print("object");
+                    await availableCameras().then((value) => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) =>
+                                CameraTranslation(cameras: value))));
+                  },
                 ),
                 ActionButton(
                   icon: Icons.mic,
