@@ -93,7 +93,6 @@ class _HomePageState extends State<HomePage> {
                   icon: Icons.camera_alt_rounded,
                   text: "Camera",
                   onPress: () async {
-                    print("object");
                     await availableCameras().then((value) => Navigator.push(
                         context,
                         MaterialPageRoute(
