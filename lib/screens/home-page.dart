@@ -1,6 +1,8 @@
 // ignore_for_file: file_names, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:translator/translator.dart';
+import 'package:vtranslate/api/voice_recognition.dart';
 import 'package:vtranslate/components/action-button.dart';
 import 'package:vtranslate/components/chooselang.dart';
 import 'package:vtranslate/components/translateinput.dart';
@@ -20,6 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var sourceLang = CurrentLanguages.sourceLang.value;
   var outputLang = CurrentLanguages.outputLang.value;
+  String recognizedWords = "text";
 
   @override
   void initState() {
@@ -101,15 +104,30 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 ActionButton(
-                  icon: Icons.mic,
-                  text: "Voice",
-                  onPress: () {},
-                ),
+                    icon: Icons.mic, text: "Voice", onPress: toggleRecording),
               ],
             ),
-          )
+          ),
+          Text(recognizedWords)
         ],
       ),
     );
   }
+
+  Future toggleRecording() => SpeechAPI.toggleRecording(
+          /*onResult: (text) => TextEditorFunctions.UpdateTranslation(text)*/
+          onResult: (text) {
+        TranslateInputState.iptTextEditingController.text = text;
+
+        GoogleTranslator()
+            .translate(text,
+                from: CurrentLanguages.sourceLang.value.code,
+                to: CurrentLanguages.outputLang.value.code)
+            .then((value) => setState(
+                  () {
+                    TranslateInputState.optTextEditingController.text =
+                        value.text;
+                  },
+                ));
+      });
 }

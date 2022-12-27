@@ -28,6 +28,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSSpeechRecognitioUsageDescription</key>
+	<string>Speech recognition is required for this app to work</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone is required to record audio</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

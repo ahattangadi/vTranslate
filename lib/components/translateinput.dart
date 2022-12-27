@@ -6,19 +6,31 @@ class TranslateInput extends StatefulWidget {
   const TranslateInput({super.key});
 
   @override
-  State<TranslateInput> createState() => _TranslateInputState();
+  State<TranslateInput> createState() => TranslateInputState();
 }
 
-class _TranslateInputState extends State<TranslateInput> {
-  final TextEditingController _iptTextEditingController =
+class TranslateInputState extends State<TranslateInput> {
+  static TextEditingController iptTextEditingController =
       TextEditingController();
-  final TextEditingController _optTextEditingController =
+  static final TextEditingController optTextEditingController =
       TextEditingController();
+
+  updateOptForVoiceTranslation(String text) {
+    setState(() {
+      optTextEditingController.text = text;
+    });
+  }
 
   String translatedText = "";
   GoogleTranslator translator = new GoogleTranslator();
 
-  _onTextChanged(String text) {
+  void update(String text) {
+    setState(() {
+      iptTextEditingController.text = text;
+    });
+  }
+
+  onTextChanged(String text) {
     if (text != "") {
       translator
           .translate(text,
@@ -26,12 +38,12 @@ class _TranslateInputState extends State<TranslateInput> {
               to: CurrentLanguages.outputLang.value.code)
           .then((translatedText) {
         setState(() {
-          _optTextEditingController.text = translatedText.text;
+          optTextEditingController.text = translatedText.text;
         });
       });
     } else {
       setState(() {
-        _optTextEditingController.text = "";
+        optTextEditingController.text = "";
       });
     }
   }
@@ -49,11 +61,11 @@ class _TranslateInputState extends State<TranslateInput> {
                 padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
                 child: TextField(
                   maxLines: null,
-                  controller: _iptTextEditingController,
+                  controller: iptTextEditingController,
                   keyboardType: TextInputType.multiline,
                   expands: true,
                   decoration: InputDecoration(hintText: "Enter text"),
-                  onChanged: _onTextChanged,
+                  onChanged: onTextChanged,
                 ),
               ),
             ),
@@ -66,7 +78,7 @@ class _TranslateInputState extends State<TranslateInput> {
                 padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
                 child: TextField(
                   maxLines: null,
-                  controller: _optTextEditingController,
+                  controller: optTextEditingController,
                   keyboardType: TextInputType.multiline,
                   expands: true,
                   enabled: false,
@@ -80,5 +92,17 @@ class _TranslateInputState extends State<TranslateInput> {
         ],
       ),
     );
+  }
+}
+
+class TextEditorFunctions {
+  static void UpdateTranslation(String textToUpdate) async {
+    TranslateInputState.iptTextEditingController.text = textToUpdate;
+    await GoogleTranslator()
+        .translate(TranslateInputState.iptTextEditingController.text,
+            from: CurrentLanguages.sourceLang.value.code,
+            to: CurrentLanguages.outputLang.value.code)
+        .then((value) =>
+            TranslateInputState().updateOptForVoiceTranslation(value.text));
   }
 }
