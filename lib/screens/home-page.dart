@@ -108,7 +108,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Text(recognizedWords)
         ],
       ),
     );
@@ -120,7 +119,7 @@ class _HomePageState extends State<HomePage> {
         TranslateInputState.iptTextEditingController.text = text;
 
         GoogleTranslator()
-            .translate(text,
+            .translate('$text ',
                 from: CurrentLanguages.sourceLang.value.code,
                 to: CurrentLanguages.outputLang.value.code)
             .then((value) => setState(
