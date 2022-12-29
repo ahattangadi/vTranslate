@@ -62,7 +62,12 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Lang temp;
+                      temp = CurrentLanguages.sourceLang.value;
+                      CurrentLanguages.sourceLang.value = CurrentLanguages.outputLang.value;
+                      CurrentLanguages.outputLang.value = temp;
+                    },
                     icon: Icon(
                       Icons.compare_arrows,
                       color: Colors.blue[600],
@@ -104,15 +109,22 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 ActionButton(
-                    icon: Icons.mic, text: "Voice", onPress: toggleRecording),
-              ],
+                    icon: Icons.mic, text: "Voice", onPress: () => doesSupportSTT(CurrentLanguages.sourceLang.value) ? toggleRecording() : ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Language not supported for voice translation"), action: SnackBarAction(label: "Ok", onPressed: () {},),),
+                ))],
             ),
           ),
         ],
-      ),
-    );
+      ),);
   }
 
+
+  doesSupportSTT(Lang lang) {
+    if (lang.name == "English") {
+      return true;
+    } else {
+      return false;
+    }
+  }
   Future toggleRecording() => SpeechAPI.toggleRecording(
           /*onResult: (text) => TextEditorFunctions.UpdateTranslation(text)*/
           onResult: (text) {
