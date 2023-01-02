@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
@@ -65,7 +66,8 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       Lang temp;
                       temp = CurrentLanguages.sourceLang.value;
-                      CurrentLanguages.sourceLang.value = CurrentLanguages.outputLang.value;
+                      CurrentLanguages.sourceLang.value =
+                          CurrentLanguages.outputLang.value;
                       CurrentLanguages.outputLang.value = temp;
                     },
                     icon: Icon(
@@ -93,11 +95,6 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ActionButton(
-                  icon: Icons.draw,
-                  text: "Handwriting",
-                  onPress: () {},
-                ),
-                ActionButton(
                   icon: Icons.camera_alt_rounded,
                   text: "Camera",
                   onPress: () async {
@@ -109,14 +106,28 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 ActionButton(
-                    icon: Icons.mic, text: "Voice", onPress: () => doesSupportSTT(CurrentLanguages.sourceLang.value) ? toggleRecording() : ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Language not supported for voice translation"), action: SnackBarAction(label: "Ok", onPressed: () {},),),
-                ))],
+                    icon: Icons.mic,
+                    text: "Voice",
+                    onPress: () =>
+                        doesSupportSTT(CurrentLanguages.sourceLang.value)
+                            ? toggleRecording()
+                            : ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      "Language not supported for voice translation"),
+                                  action: SnackBarAction(
+                                    label: "Ok",
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ))
+              ],
             ),
           ),
         ],
-      ),);
+      ),
+    );
   }
-
 
   doesSupportSTT(Lang lang) {
     if (lang.name == "English") {
@@ -125,6 +136,7 @@ class _HomePageState extends State<HomePage> {
       return false;
     }
   }
+
   Future toggleRecording() => SpeechAPI.toggleRecording(
           /*onResult: (text) => TextEditorFunctions.UpdateTranslation(text)*/
           onResult: (text) {
