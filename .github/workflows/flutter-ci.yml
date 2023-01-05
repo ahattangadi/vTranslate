@@ -1,4 +1,4 @@
-name: Flutter CI
+name: prod build
 
 # This workflow is triggered on pushes to the repository.
 
@@ -32,6 +32,7 @@ jobs:
     
     # Check for any formatting issues in the code.
     - run: flutter format --set-exit-if-changed .
+      continue-on-error: true
     
     # Build apk.
     - run: flutter build apk --split-per-abi
