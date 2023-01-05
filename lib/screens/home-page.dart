@@ -111,16 +111,8 @@ class _HomePageState extends State<HomePage> {
                     onPress: () =>
                         doesSupportSTT(CurrentLanguages.sourceLang.value)
                             ? toggleRecording()
-                            : ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                      "Language not supported for voice translation"),
-                                  action: SnackBarAction(
-                                    label: "Ok",
-                                    onPressed: () {},
-                                  ),
-                                ),
-                              ))
+                            : sttNotTestedErr()
+                )
               ],
             ),
           ),
@@ -129,8 +121,23 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  sttNotTestedErr() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+            "Language has not been tested. You may experience bugs."),
+        action: SnackBarAction(
+          label: "Ok",
+          onPressed: () {},
+        ),
+      ),
+    );
+    toggleRecording();
+  }
+
   doesSupportSTT(Lang lang) {
-    if (lang.name == "English") {
+    List<String> supportedLangs = ["English", "French", "German", "Hindi"];
+    if (supportedLangs.contains(lang.name)) {
       return true;
     } else {
       return false;
@@ -138,7 +145,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future toggleRecording() => SpeechAPI.toggleRecording(
-          /*onResult: (text) => TextEditorFunctions.UpdateTranslation(text)*/
+          langCode: CurrentLanguages.sourceLang.value.code,
           onResult: (text) {
         TranslateInputState.iptTextEditingController.text = text;
 

@@ -81,7 +81,7 @@ class TranslateInputState extends State<TranslateInput> {
                   controller: optTextEditingController,
                   keyboardType: TextInputType.multiline,
                   expands: true,
-                  enabled: false,
+                  readOnly: true,
                   decoration: InputDecoration(
                     hintText: "Translation",
                   ),
