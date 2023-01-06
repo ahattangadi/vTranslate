@@ -111,8 +111,7 @@ class _HomePageState extends State<HomePage> {
                     onPress: () =>
                         doesSupportSTT(CurrentLanguages.sourceLang.value)
                             ? toggleRecording()
-                            : sttNotTestedErr()
-                )
+                            : sttNotTestedErr())
               ],
             ),
           ),
@@ -124,8 +123,7 @@ class _HomePageState extends State<HomePage> {
   sttNotTestedErr() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(
-            "Language has not been tested. You may experience bugs."),
+        content: Text("Language has not been tested. You may experience bugs."),
         action: SnackBarAction(
           label: "Ok",
           onPressed: () {},
@@ -145,8 +143,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future toggleRecording() => SpeechAPI.toggleRecording(
-          langCode: CurrentLanguages.sourceLang.value.code,
-          onResult: (text) {
+      langCode: CurrentLanguages.sourceLang.value.code,
+      onResult: (text) {
         TranslateInputState.iptTextEditingController.text = text;
 
         GoogleTranslator()

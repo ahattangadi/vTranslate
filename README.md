@@ -45,14 +45,6 @@ Install dependencies
 Run the app!
 
 
-## Develop Locally
-
-1. Install the flutter SDK, Android SDK, Android Studio, and any other pre-requisites 
-2. Clone this repository
-3. Run `flutter pub get`
-4. Run the app!
-
-
 ## Authors
 
 - [@AaravHattangadi](https://www.github.com/AaravHattangadi)
