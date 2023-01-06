@@ -9,10 +9,10 @@
 An app designed to let you translate on the go.
 ## Features
 
-- [x] Text based translation
-- [x] Voice based translation
-- [x] Camera based translation
-- [x] Support for many languages
+- [x] ~~Text based translation~~
+- [x] ~~Voice based translation~~
+- [x] ~~Camera based translation~~
+- [x] ~~Support for many languages~~
 - [ ] Offline translation
 
 ## Roadmap
