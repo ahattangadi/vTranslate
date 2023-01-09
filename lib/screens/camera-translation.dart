@@ -133,6 +133,15 @@ class _CameraTranslationState extends State<CameraTranslation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          takeImageToTranslate();
+        },
+        label: const Text("Translate"),
+        icon: Icon(Icons.translate),
+        backgroundColor: Colors.blue[800],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
           child: Column(
         children: [
@@ -141,16 +150,16 @@ class _CameraTranslationState extends State<CameraTranslation> {
               : const Center(
                   child: CircularProgressIndicator(),
                 ),
-          TextButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue[600])),
-              onPressed: () async {
-                takeImageToTranslate();
-              },
-              child: Text(
-                "Translate from ${CurrentLanguages.sourceLang.value.name} to ${CurrentLanguages.outputLang.value.name}",
-                style: TextStyle(color: Colors.white),
-              ))
+          // TextButton(
+          //     style: ButtonStyle(
+          //         backgroundColor: MaterialStateProperty.all(Colors.blue[600])),
+          //     onPressed: () async {
+          //       takeImageToTranslate();
+          //     },
+          //     child: Text(
+          //       "Translate from ${CurrentLanguages.sourceLang.value.name} to ${CurrentLanguages.outputLang.value.name}",
+          //       style: TextStyle(color: Colors.white),
+          //     ))
         ],
       )),
     );
