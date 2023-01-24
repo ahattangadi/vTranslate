@@ -1,10 +1,7 @@
-![Current Version](https://img.shields.io/badge/version-1.0.0-blue) ![Is build passing](https://github.com/AaravHattangadi/vTranslate/actions/workflows/flutter-ci.yml/badge.svg) ![lines of code](https://img.shields.io/tokei/lines/github/AaravHattangadi/vTranslate?color=green&style=plastic) ![commits per month](https://img.shields.io/github/commit-activity/m/AaravHattangadi/vTranslate?color=red&style=plastic)
-
-
-
-
+<img src="https://user-images.githubusercontent.com/69454819/214280047-6400ecdc-85f6-4190-8f81-f656c60c255e.png" alt="vTranslate logo" width="200"></img>
 
 # vTranslate
+![Current Version](https://img.shields.io/badge/version-1.0.0-blue) ![Is build passing](https://github.com/AaravHattangadi/vTranslate/actions/workflows/flutter-ci.yml/badge.svg) ![lines of code](https://img.shields.io/tokei/lines/github/AaravHattangadi/vTranslate?color=green&style=plastic) ![commits per month](https://img.shields.io/github/commit-activity/m/AaravHattangadi/vTranslate?color=red&style=plastic)
 
 An app designed to let you translate on the go.
 ## Features
