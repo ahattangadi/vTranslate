@@ -121,6 +121,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   sttNotTestedErr() {
+    print("reaching point sttNotTestedErr");
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text("Language has not been tested. You may experience bugs."),
@@ -134,6 +135,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   doesSupportSTT(Lang lang) {
+    print("reaching point doesSupportSTT");
     List<String> supportedLangs = ["English", "French", "German", "Hindi"];
     if (supportedLangs.contains(lang.name)) {
       return true;
@@ -142,20 +144,23 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Future toggleRecording() => SpeechAPI.toggleRecording(
-      langCode: CurrentLanguages.sourceLang.value.code,
-      onResult: (text) {
-        TranslateInputState.iptTextEditingController.text = text;
+  Future? toggleRecording() {
+    print("reached point toggleRecording");
+    SpeechAPI.toggleRecording(
+        langCode: CurrentLanguages.sourceLang.value.code,
+        onResult: (text) {
+          TranslateInputState.iptTextEditingController.text = text;
 
-        GoogleTranslator()
-            .translate('$text ',
-                from: CurrentLanguages.sourceLang.value.code,
-                to: CurrentLanguages.outputLang.value.code)
-            .then((value) => setState(
-                  () {
-                    TranslateInputState.optTextEditingController.text =
-                        value.text;
-                  },
-                ));
-      });
+          GoogleTranslator()
+              .translate('$text ',
+                  from: CurrentLanguages.sourceLang.value.code,
+                  to: CurrentLanguages.outputLang.value.code)
+              .then((value) => setState(
+                    () {
+                      TranslateInputState.optTextEditingController.text =
+                          value.text;
+                    },
+                  ));
+        });
+  }
 }

@@ -12,7 +12,15 @@ class SpeechAPI {
     final isAvailable = await _speech.initialize();
 
     if (isAvailable) {
-      _speech.listen(onResult: (value) => onResult(value.recognizedWords), localeId: langCode);
+      print("isAvailable=true");
+      _speech.listen(
+          onResult: (value) {
+            // print(value);
+            onResult(value.recognizedWords);
+          },
+          localeId: langCode);
+    } else {
+      print("isAvailable=false");
     }
 
     return isAvailable;
